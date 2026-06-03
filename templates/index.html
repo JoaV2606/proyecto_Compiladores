@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Validador de Órdenes de Compra</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="page-container">
+    <header>
+      <h1>Validador de Órdenes de Compra</h1>
+      <p>
+        Este proyecto implementa un compilador ligero con análisis léxico,
+        sintáctico y semántico para validar órdenes de compra en formato textual.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>Ejemplo de orden</h2>
+      <pre id="sample">{{ sample_order }}</pre>
+    </section>
+
+    <section class="card">
+      <h2>Ingrese la orden de compra</h2>
+      <form id="order-form">
+        <textarea id="order-text" name="order_text" rows="12" spellcheck="false">{{ sample_order }}</textarea>
+        <button type="submit">Analizar orden</button>
+      </form>
+    </section>
+
+    <section class="card" id="results" hidden>
+      <h2>Resultados</h2>
+      <div id="status" class="status"></div>
+      <div class="result-block">
+        <h3>Errores léxicos</h3>
+        <ul id="lexical-errors"></ul>
+      </div>
+      <div class="result-block">
+        <h3>Errores de sintaxis</h3>
+        <ul id="syntax-errors"></ul>
+      </div>
+      <div class="result-block">
+        <h3>Errores semánticos</h3>
+        <ul id="semantic-errors"></ul>
+      </div>
+      <div class="result-block">
+        <h3>Tokens reconocidos</h3>
+        <table>
+          <thead>
+            <tr><th>Línea</th><th>Tipo</th><th>Valor</th></tr>
+          </thead>
+          <tbody id="tokens"></tbody>
+        </table>
+      </div>
+      <div class="result-block">
+        <h3>Resumen del pedido</h3>
+        <pre id="parsed"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
