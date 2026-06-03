@@ -16,7 +16,7 @@ Proyecto web en Python y Flask para validar órdenes de compra mediante análisi
 - Python 3.10 o superior.
 - Entorno virtual recomendado.
 
-## nstalación
+## Instalación
 
 1. Abre una terminal en la carpeta `proyecto_Compiladores`.
 2. Crea un entorno virtual (recomendado):
