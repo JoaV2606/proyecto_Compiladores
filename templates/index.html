@@ -8,54 +8,113 @@
 </head>
 <body>
   <main class="page-container">
-    <header>
-      <h1>Validador de Órdenes de Compra</h1>
-      <p>
-        Este proyecto implementa un compilador ligero con análisis léxico,
-        sintáctico y semántico para validar órdenes de compra en formato textual.
-      </p>
+    <header class="hero-card">
+      <div>
+        <p class="eyebrow">COMPILADOR DE ORDENES</p>
+        <h1>Validador de órdenes de compra</h1>
+        <p class="hero-copy">
+          Analiza textos de órdenes de compra con un flujo claro de verificación léxica,
+          sintáctica y semántica. Diseñado para revisar formatos reales sin perder
+          la simplicidad del proceso.
+        </p>
+      </div>
+      <div class="hero-summary">
+        <div class="stat-card">
+          <span>3 etapas</span>
+          <strong>Análisis completo</strong>
+        </div>
+        <div class="stat-card">
+          <span>Formato</span>
+          <strong>ORDEN / FECHA / CLIENTE / ITEM / TOTAL</strong>
+        </div>
+        <div class="stat-card">
+          <span>Rápido</span>
+          <strong>Retroalimentación inmediata</strong>
+        </div>
+      </div>
     </header>
 
-    <section class="card">
-      <h2>Ejemplo de orden</h2>
-      <pre id="sample">{{ sample_order }}</pre>
-    </section>
+    <div class="panel-grid">
+      <section class="card input-panel">
+        <div class="card-header">
+          <h2>Ingrese la orden de compra</h2>
+          <span class="badge info">Texto libre</span>
+        </div>
+        <form id="order-form">
+          <textarea id="order-text" name="order_text" rows="14" spellcheck="false">{{ sample_order }}</textarea>
+          <div class="form-footer">
+            <button type="submit">Analizar orden</button>
+            <p class="hint">Asegúrate de usar el formato correcto para cada línea.</p>
+          </div>
+        </form>
+      </section>
 
-    <section class="card">
-      <h2>Ingrese la orden de compra</h2>
-      <form id="order-form">
-        <textarea id="order-text" name="order_text" rows="12" spellcheck="false">{{ sample_order }}</textarea>
-        <button type="submit">Analizar orden</button>
-      </form>
-    </section>
+      <aside class="card mini-panel">
+        <h2>Ejemplo de orden</h2>
+        <pre id="sample">{{ sample_order }}</pre>
+        <div class="example-list">
+          <strong>Ejemplos rápidos</strong>
+          <ul>
+            <li>ITEM: P-100 | Tornillo | 200 | 0.15</li>
+            <li>TOTAL: 60.00</li>
+            <li>FECHA: 15/03/2026</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
 
     <section class="card" id="results" hidden>
-      <h2>Resultados</h2>
-      <div id="status" class="status"></div>
-      <div class="result-block">
-        <h3>Errores léxicos</h3>
-        <ul id="lexical-errors"></ul>
+      <div class="result-header">
+        <div>
+          <h2>Resultados</h2>
+          <p class="result-copy">El validador muestra el estado general y la información detallada.</p>
+        </div>
+        <div id="status" class="status"></div>
       </div>
-      <div class="result-block">
-        <h3>Errores de sintaxis</h3>
-        <ul id="syntax-errors"></ul>
+
+      <div class="status-grid">
+        <div class="status-card">
+          <span>Léxico</span>
+          <strong id="lexical-status">Pendiente</strong>
+        </div>
+        <div class="status-card">
+          <span>Sintáctico</span>
+          <strong id="syntax-status">Pendiente</strong>
+        </div>
+        <div class="status-card">
+          <span>Semántico</span>
+          <strong id="semantic-status">Pendiente</strong>
+        </div>
       </div>
-      <div class="result-block">
-        <h3>Errores semánticos</h3>
-        <ul id="semantic-errors"></ul>
+
+      <div class="result-block errors-grid">
+        <div>
+          <h3>Errores léxicos</h3>
+          <ul id="lexical-errors"></ul>
+        </div>
+        <div>
+          <h3>Errores de sintaxis</h3>
+          <ul id="syntax-errors"></ul>
+        </div>
+        <div>
+          <h3>Errores semánticos</h3>
+          <ul id="semantic-errors"></ul>
+        </div>
       </div>
+
       <div class="result-block">
         <h3>Tokens reconocidos</h3>
         <table>
           <thead>
-            <tr><th>Línea</th><th>Tipo</th><th>Valor</th></tr>
+            <tr><th>Línea</th><th>Categoría (Tokens)</th><th>Lexema (Valor exacto)</th></tr>
           </thead>
           <tbody id="tokens"></tbody>
         </table>
       </div>
-      <div class="result-block">
-        <h3>Resumen del pedido</h3>
-        <pre id="parsed"></pre>
+
+      <div class="result-block summary-panel">
+        <h3>Resumen de la orden</h3>
+        <div id="order-summary"></div>
       </div>
     </section>
   </main>
