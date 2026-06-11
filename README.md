@@ -25,7 +25,7 @@ Proyecto web en Python y Flask para validar órdenes de compra mediante análisi
    python -m venv venv
    ```
 
-3. Activa el entorno virtual:
+3. Activa el entorno virtual según tu terminal:
 
    Windows PowerShell:
    ```powershell
@@ -37,6 +37,11 @@ Proyecto web en Python y Flask para validar órdenes de compra mediante análisi
    .\venv\Scripts\activate.bat
    ```
 
+   Git Bash / WSL:
+   ```bash
+   source venv/Scripts/activate
+   ```
+
 4. Instala las dependencias:
 
    ```bash
@@ -45,7 +50,7 @@ Proyecto web en Python y Flask para validar órdenes de compra mediante análisi
 
 ## Ejecutar localmente
 
-1. Ejecuta la aplicación:
+1. Asegúrate de que el entorno virtual esté activado y ejecuta la aplicación:
 
    ```bash
    python app.py
@@ -56,6 +61,8 @@ Proyecto web en Python y Flask para validar órdenes de compra mediante análisi
    ```text
    http://127.0.0.1:5000
    ```
+
+> Si usas VS Code, abre la carpeta del proyecto y ejecuta estos comandos en el terminal integrado para que el entorno virtual se active correctamente.
 
 ## Ejemplo de uso
 
