@@ -168,7 +168,7 @@ def parse_order(text):
         )
 
     if data["order_id"] is None:
-        errors.append({"line": 0, "message": "Falta la línea OORDEN."})
+        errors.append({"line": 0, "message": "Falta la línea ORDEN."})
     if data["date"] is None:
         errors.append({"line": 0, "message": "Falta la línea FECHA."})
     if data["client"] is None:

@@ -9,27 +9,33 @@
 <body>
   <main class="page-container">
     <header class="hero-card">
-      <div>
-        <p class="eyebrow">COMPILADOR DE ORDENES</p>
-        <h1>Validador de órdenes de compra</h1>
-        <p class="hero-copy">
-          Analiza textos de órdenes de compra con un flujo claro de verificación léxica,
-          sintáctica y semántica. Diseñado para revisar formatos reales sin perder
-          la simplicidad del proceso.
-        </p>
+      <div class="hero-top">
+        <div class="hero-brand">
+          <img src="{{ url_for('static', filename='logo.svg') }}" alt="Distribuidora El Sol" class="brand-logo" />
+          <div>
+            <p class="eyebrow">COMPILADOR DE ORDENES</p>
+            <h1>Validación profesional de órdenes de compra</h1>
+            <p class="hero-copy">Pega la orden completa y obtén un informe claro con correcciones puntuales.</p>
+          </div>
+        </div>
+        <div class="hero-badges">
+          <span class="brand-pill">Distribuidora El Sol</span>
+          <span class="brand-pill badge-muted">30 años de experiencia</span>
+        </div>
       </div>
+
       <div class="hero-summary">
         <div class="stat-card">
-          <span>3 etapas</span>
-          <strong>Análisis completo</strong>
+          <span>Precisión</span>
+          <strong>Análisis léxico, sintáctico y semántico</strong>
         </div>
         <div class="stat-card">
-          <span>Formato</span>
-          <strong>ORDEN / FECHA / CLIENTE / ITEM / TOTAL</strong>
+          <span>Simple</span>
+          <strong>Formato fácil de usar</strong>
         </div>
         <div class="stat-card">
-          <span>Rápido</span>
-          <strong>Retroalimentación inmediata</strong>
+          <span>Acción</span>
+          <strong>Resultados listos para corregir</strong>
         </div>
       </div>
     </header>
@@ -37,27 +43,43 @@
     <div class="panel-grid">
       <section class="card input-panel">
         <div class="card-header">
-          <h2>Ingrese la orden de compra</h2>
-          <span class="badge info">Texto libre</span>
+          <div>
+            <h2>Ingrese la orden de compra</h2>
+            <p class="hint">Pega aquí el texto recibido y revisa los errores automáticamente.</p>
+          </div>
         </div>
+
         <form id="order-form">
           <textarea id="order-text" name="order_text" rows="14" spellcheck="false">{{ sample_order }}</textarea>
+          <div class="help-card">
+            <p><strong>Ejemplo de formato</strong></p>
+            <ul class="helper-list">
+              <li><code>ORDEN: OC-2026-001</code></li>
+              <li><code>FECHA: 15/03/2026</code></li>
+              <li><code>CLIENTE: Nombre del cliente</code></li>
+              <li><code>ITEM: Código | Descripción | Cantidad | Precio</code></li>
+              <li><code>TOTAL: 60.00</code></li>
+            </ul>
+          </div>
+
           <div class="form-footer">
-            <button type="submit">Analizar orden</button>
-            <p class="hint">Asegúrate de usar el formato correcto para cada línea.</p>
+            <div class="form-actions">
+              <button type="button" id="load-sample" class="secondary-button">Cargar orden de ejemplo</button>
+              <button type="submit">Analizar orden</button>
+            </div>
           </div>
         </form>
       </section>
 
       <aside class="card mini-panel">
-        <h2>Ejemplo de orden</h2>
+        <h2>Guía rápida</h2>
         <pre id="sample">{{ sample_order }}</pre>
         <div class="example-list">
-          <strong>Ejemplos rápidos</strong>
+          <strong>Reglas clave</strong>
           <ul>
-            <li>ITEM: P-100 | Tornillo | 200 | 0.15</li>
-            <li>TOTAL: 60.00</li>
-            <li>FECHA: 15/03/2026</li>
+            <li>La línea <strong>ITEM</strong> debe tener exactamente 4 campos.</li>
+            <li>Usa <code>|</code> para separar código, descripción, cantidad y precio.</li>
+            <li>El total debe coincidir con la suma de los artículos.</li>
           </ul>
         </div>
       </aside>
@@ -67,7 +89,7 @@
       <div class="result-header">
         <div>
           <h2>Resultados</h2>
-          <p class="result-copy">El validador muestra el estado general y la información detallada.</p>
+          <p class="result-copy">Revisa el estado general y los detalles de cada nivel de validación.</p>
         </div>
         <div id="status" class="status"></div>
       </div>

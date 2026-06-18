@@ -10,6 +10,14 @@ const lexicalStatusEl = document.getElementById('lexical-status');
 const syntaxStatusEl = document.getElementById('syntax-status');
 const semanticStatusEl = document.getElementById('semantic-status');
 const orderSummaryEl = document.getElementById('order-summary');
+const loadSampleButton = document.getElementById('load-sample');
+const sampleText = document.getElementById('sample')?.textContent.trim() || '';
+
+loadSampleButton?.addEventListener('click', () => {
+  orderText.value = sampleText;
+  orderText.focus();
+  resultsSection.hidden = true;
+});
 
 function createList(items) {
   if (!items || items.length === 0) {
