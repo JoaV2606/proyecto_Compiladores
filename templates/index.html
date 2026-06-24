@@ -109,38 +109,118 @@
         </div>
       </div>
 
-      <div class="result-block errors-grid">
-        <div>
-          <h3>Errores léxicos</h3>
-          <ul id="lexical-errors"></ul>
-        </div>
-        <div>
-          <h3>Errores de sintaxis</h3>
-          <ul id="syntax-errors"></ul>
-        </div>
-        <div>
-          <h3>Errores semánticos</h3>
-          <ul id="semantic-errors"></ul>
-        </div>
+      <div class="analysis-grid">
+        <section class="analysis-card lexical-card">
+          <div class="panel-header">
+            <h3>Análisis Léxico</h3>
+          </div>
+          <p class="panel-copy">Tokens detectados y expresiones regulares asociadas.</p>
+          <div class="compact-card">
+            <h4>Tokens reconocidos</h4>
+            <table>
+              <thead>
+                <tr><th>Token</th><th>Lexemas</th></tr>
+              </thead>
+              <tbody id="tokens"></tbody>
+            </table>
+          </div>
+          <div class="compact-card">
+            <h4>Expresiones regulares</h4>
+            <table>
+              <thead>
+                <tr><th>Token</th><th>Regex</th><th>Lexemas</th></tr>
+              </thead>
+              <tbody id="token-analysis"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="analysis-card syntax-card">
+          <div class="panel-header">
+            <h3>Análisis Sintáctico</h3>
+          </div>
+          <p class="panel-copy">Gramática libre de contexto y árbol de análisis sintáctico.</p>
+          <div class="compact-card">
+            <h4>Gramática</h4>
+            <div class="grammar-list"><ul id="grammar-rules"></ul></div>
+          </div>
+          <div class="compact-card">
+            <h4>Árbol sintáctico</h4>
+            <div class="tree-visual">
+              <div id="parse-tree-svg"></div>
+              <img id="parse-tree-img" alt="Árbol sintáctico" style="max-width:100%;display:none;margin:0 auto;" />
+              <pre id="parse-tree" style="display:none;margin-top:12px;"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="analysis-card semantic-card">
+          <div class="panel-header">
+            <h3>Semántico</h3>
+          </div>
+          <p class="panel-copy">Errores semánticos y resumen de la orden.</p>
+          <div class="compact-card">
+            <h4>Errores</h4>
+            <div class="errors-grid semantic-errors-panel">
+              <div>
+                <h5>Léxicos</h5>
+                <ul id="lexical-errors"></ul>
+              </div>
+              <div>
+                <h5>Sintaxis</h5>
+                <ul id="syntax-errors"></ul>
+              </div>
+              <div>
+                <h5>Semánticos</h5>
+                <ul id="semantic-errors"></ul>
+              </div>
+            </div>
+          </div>
+          <div class="compact-card">
+            <h4>Resumen de la orden</h4>
+            <div id="order-summary"></div>
+          </div>
+        </section>
       </div>
 
-      <div class="result-block">
-        <h3>Tokens reconocidos</h3>
-        <table>
-          <thead>
-            <tr><th>Línea</th><th>Categoría (Tokens)</th><th>Lexema (Valor exacto)</th></tr>
-          </thead>
-          <tbody id="tokens"></tbody>
-        </table>
-      </div>
-
-      <div class="result-block summary-panel">
-        <h3>Resumen de la orden</h3>
-        <div id="order-summary"></div>
+      <div class="result-block automata-panel">
+        <div class="panel-header">
+          <h3>Autómatas</h3>
+        </div>
+        <div class="automata-controls">
+          <label for="automata-select">Selecciona token</label>
+          <select id="automata-select"></select>
+        </div>
+        <div class="automata-display">
+          <div class="automata-section">
+            <h4>NFA</h4>
+            <div id="automata-nfa" class="automata-svg"></div>
+          </div>
+          <div class="automata-section">
+            <h4>DFA</h4>
+            <div id="automata-dfa" class="automata-svg"></div>
+          </div>
+        </div>
+        <div id="automata-dfa-table" class="automata-table"></div>
       </div>
     </section>
   </main>
 
+  <div id="tree-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-body">
+      <button id="tree-modal-close" class="modal-close" aria-label="Cerrar vista ampliada">×</button>
+      <div class="tree-modal-toolbar" aria-label="Controles de zoom y movimiento">
+        <button id="tree-zoom-out" type="button" class="toolbar-button" aria-label="Alejar">−</button>
+        <button id="tree-reset-zoom" type="button" class="toolbar-button" aria-label="Restablecer zoom">Reset</button>
+        <button id="tree-zoom-in" type="button" class="toolbar-button" aria-label="Acercar">+</button>
+        <span class="toolbar-help">Arrastra para mover, usa los botones para acercar/alejar</span>
+      </div>
+      <div id="tree-modal-content" class="tree-modal-content"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/viz.js@2.1.2/viz.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/viz.js@2.1.2/full.render.js"></script>
   <script src="/static/script.js"></script>
 </body>
 </html>
